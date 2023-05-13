@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
 
 * {
   box-sizing: border-box;
@@ -7,7 +7,7 @@
 body {
   background-color: #2a2a72;
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,24 +17,51 @@ body {
   margin: 0;
 }
 
-.user-form {
+.form {
   width: 100%;
-  max-width: 700px;
+  max-width: 770px;
+  --offset: 2px;
+  background: #4c2885;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  border-radius: 20px;
+}
+.form::before {
+  content: "";
+  background: conic-gradient(transparent 270deg, white, transparent);
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  aspect-ratio: 1;
+  width: 100%;
+  animation: rotate 2s linear infinite;
+  overflow: hidden;
+  z-index: -20;
+}
+.form::after {
+  content: "";
+  background: #4c2885;
+  border-radius: inherit;
+  position: absolute;
+  inset: var(--offset);
+  height: calc(100%-2 * var(--offset));
+  width: calc(100%-2 * var(--offset));
+  z-index: -20;
 }
 
 .user-form input {
   width: 100%;
-  display: block;
-  background-color: #4c2885;
+  /* position: absolute; */
+  inset: 0;
+  background-color: transparent;
   border: none;
   border-radius: 10px;
   color: #fff;
   padding: 1rem;
-  margin-bottom: 2rem;
   font-family: inherit;
   font-size: 1rem;
-  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
-    0 15px 40px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .user-form input::placeholder {
@@ -53,7 +80,7 @@ body {
     0 15px 40px rgba(0, 0, 0, 0.1);
   display: flex;
   padding: 3rem;
-  margin: 0 1.5rem;
+  margin: 1.5rem;
 }
 
 .avatar {
@@ -68,8 +95,12 @@ body {
   margin-left: 2rem;
 }
 
-.user-info h2 {
+.user-info #name {
   margin-top: 0;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .user-info ul {
@@ -107,7 +138,18 @@ body {
     align-items: center;
   }
 
-  .user-form {
+  .user-form,
+  .form {
     max-width: 400px;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
